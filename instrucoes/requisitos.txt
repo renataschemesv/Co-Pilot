@@ -1,0 +1,335 @@
+1. Descrição do Sistema de Achados e Perdidos
+
+O sistema EncontraIFC é destinado ao gerenciamento de objetos perdidos e encontrados nas dependências do Instituto Federal Catarinense (IFC) – Campus Blumenau. Seu objetivo é facilitar a identificação e a recuperação de pertences, permitindo que alunos e servidores registrem objetos que perderam e acompanhem os registros de objetos encontrados na instituição.
+
+Um usuário é quem realiza o cadastro de um objeto perdido, informando suas características, categoria, local e data aproximada da ocorrência. O cadastro de objetos encontrados, entretanto, é restrito aos usuários autorizados como responsáveis pelo gerenciamento dos achados e perdidos da instituição.
+
+Os objetos podem ser categorizados, por exemplo: Material Escolar, Eletrônicos, Vestuário, Acessórios, Documentos e Outros. Cada registro deve pertencer a uma categoria, permitindo organizar e facilitar a localização dos objetos.
+
+Os registros também devem estar associados a um local da instituição, como Biblioteca, Laboratório de Informática, Sala de Aula, Cantina ou Pátio. Os locais disponíveis serão previamente cadastrados no sistema, incluindo a opção "Local não identificado", para os casos em que não seja possível determinar onde o objeto foi perdido ou encontrado.
+
+O sistema permite relacionar registros de objetos perdidos a possíveis registros de objetos encontrados, auxiliando na identificação dos pertences. Entretanto, um objeto perdido não necessariamente terá um registro correspondente de objeto encontrado.
+
+O sistema permite visualizar informações básicas dos objetos encontrados de forma pública, sem a necessidade de realizar login. Entretanto, informações adicionais e funcionalidades como a solicitação de recuperação estão disponíveis somente aos usuários autenticados, visando preservar a segurança dos registros e evitar falsas identificações.
+
+Quando um usuário identifica um objeto que acredita ser de sua propriedade, poderá realizar uma solicitação de recuperação, fornecendo informações que auxiliem na comprovação de que é o verdadeiro proprietário. Essa solicitação deverá ser analisada por um responsável autorizado, que poderá aprová-la ou recusá-la conforme as informações apresentadas.
+
+Após a aprovação da solicitação, a devolução do objeto deverá ser registrada no sistema, contendo informações sobre o responsável pela entrega, o destinatário e a data da devolução. Dessa forma, o sistema mantém um histórico das solicitações e entregas realizadas.
+
+Os objetos encontrados que não forem recuperados permanecerão registrados no sistema, podendo ter sua situação atualizada ou serem arquivados conforme as regras estabelecidas pela instituição.
+
+Qualquer pessoa que possua vínculo com a instituição, seja como aluno ou servidor, poderá solicitar o cadastro no sistema utilizando um endereço de email e senha. Não será obrigatório utilizar um email institucional, desde que o usuário comprove seu vínculo com o IFC. O endereço de email deverá ser confirmado por meio de uma verificação enviada ao usuário. Após essa confirmação, a conta permanecerá pendente até que um administrador valide o vínculo institucional e aprove o cadastro.
+
+O sistema possui diferentes níveis de permissão. Usuários comuns podem cadastrar objetos perdidos e realizar solicitações de recuperação. Usuários autorizados como responsáveis podem cadastrar objetos encontrados, analisar solicitações e registrar devoluções. A permissão de responsável somente poderá ser concedida a usuários que possuam vínculo como servidores da instituição. Administradores são responsáveis pela aprovação dos cadastros e pelo gerenciamento das permissões dos usuários.
+
+2. Descrição das entidades
+
+Um registro possui:
+
+um identificador único;
+
+um tipo de registro, indicando se representa um objeto perdido ou encontrado;
+
+um título, utilizado para identificar resumidamente o objeto;
+
+uma descrição, contendo as características e informações que auxiliem na identificação do objeto;
+
+a data aproximada em que o objeto foi perdido ou encontrado;
+
+a data de criação do registro no sistema;
+
+a situação do registro, indicando se está ativo, recuperado ou arquivado;
+
+a categoria à qual o objeto pertence;
+
+o local relacionado à ocorrência;
+
+o usuário que realizou o cadastro;
+
+RELACIONAMENTO: uma categoria à qual o registro pertence;
+
+RELACIONAMENTO: um local relacionado ao registro;
+
+RELACIONAMENTO: um usuário responsável pelo cadastro do registro;
+
+RELACIONAMENTO: uma lista de solicitações de recuperação, caso o registro represente um objeto encontrado;
+
+RELACIONAMENTO: uma lista de possíveis registros correspondentes. Um registro de objeto perdido pode estar relacionado a um ou mais registros de objetos encontrados que apresentem características semelhantes, auxiliando na identificação do pertence.
+
+RN: todo registro deve possuir um tipo, título, descrição, categoria e data de ocorrência.
+
+RN: todo registro deve estar associado a um usuário cadastrado no sistema.
+
+RN: usuários ativos podem cadastrar registros de objetos perdidos.
+
+RN: somente usuários ativos com permissão de responsável podem cadastrar registros de objetos encontrados.
+
+RN: um registro de objeto perdido não precisa necessariamente possuir um registro correspondente de objeto encontrado.
+
+RN: um registro de objeto encontrado pode estar relacionado a diferentes registros de objetos perdidos, caso existam possíveis correspondências.
+
+RN: apenas registros de objetos encontrados podem receber solicitações de recuperação.
+
+RN: um registro recuperado não pode receber novas solicitações de recuperação.
+
+RN: registros que possuam solicitações ou devoluções associadas não devem ser excluídos definitivamente, devendo ser arquivados quando necessário, para preservar o histórico do sistema.
+
+RN: a desativação ou arquivamento de um registro não deve apagar suas informações ou relacionamentos.
+
+RN: as informações exibidas publicamente devem ser limitadas, evitando a divulgação de características específicas que possam facilitar falsas identificações.
+
+RN: a situação do registro deve ser atualizada conforme o andamento do processo de recuperação.
+
+Um usuário possui:
+
+um identificador único;
+
+um nome;
+
+um email;
+
+uma senha, armazenada de forma protegida;
+
+uma data de cadastro no sistema;
+
+o tipo de vínculo com a instituição, podendo ser aluno ou servidor;
+
+um indicador (flag: verdadeiro ou falso) que informa se o email foi verificado;
+
+uma situação, indicando se a conta está pendente, ativa ou inativa;
+
+um indicador (flag: verdadeiro ou falso) que informa se o usuário possui permissão de responsável pelo gerenciamento dos achados e perdidos;
+
+um indicador (flag: verdadeiro ou falso) que informa se o usuário possui permissão administrativa.
+
+RELACIONAMENTO: uma lista de registros de objetos perdidos cadastrados pelo usuário.
+
+RELACIONAMENTO: uma lista de registros de objetos encontrados cadastrados pelo usuário, caso possua permissão de responsável.
+
+RELACIONAMENTO: uma lista de solicitações de recuperação realizadas pelo usuário.
+
+RELACIONAMENTO: uma lista de solicitações analisadas pelo usuário, caso possua permissão de responsável.
+
+RELACIONAMENTO: uma lista de devoluções registradas pelo usuário, caso possua permissão de responsável.
+
+RN: o email é um atributo de valor único no sistema.
+
+RN: todo usuário deve possuir vínculo com a instituição, sendo classificado como aluno ou servidor.
+
+RN: o usuário deverá confirmar seu email por meio de uma verificação enviada ao endereço informado, antes de ter sua conta aprovada.
+
+RN: ao se cadastrar, o usuário informa seu vínculo com a instituição, mas a conta permanece pendente até que um administrador valide as informações e aprove o cadastro.
+
+RN: usuários pendentes ou inativos não podem cadastrar objetos perdidos nem realizar solicitações de recuperação.
+
+RN: usuários ativos podem utilizar as funcionalidades disponíveis para seu nível de permissão.
+
+RN: somente usuários com vínculo de servidor podem receber a permissão de responsável.
+
+RN: a permissão de responsável deve ser concedida ou removida por um administrador.
+
+RN: somente usuários ativos com permissão de responsável podem cadastrar objetos encontrados, analisar solicitações e registrar devoluções.
+
+RN: um usuário não pode aprovar ou recusar uma solicitação de recuperação realizada por ele próprio.
+
+RN: a permissão administrativa é independente da permissão de responsável.
+
+RN: a senha não deve ser armazenada em texto puro, devendo ser protegida por um mecanismo seguro de armazenamento.
+
+RN: usuários inativos não podem acessar as funcionalidades restritas do sistema.
+
+Um usuário administrador possui as mesmas informações de cadastro de um usuário comum, diferenciando-se pela permissão administrativa.
+
+RELACIONAMENTO: uma lista de usuários cujos cadastros podem ser aprovados ou recusados pelo administrador.
+
+RELACIONAMENTO: uma lista de permissões de responsável que podem ser concedidas ou removidas pelo administrador.
+
+RN: somente administradores podem aprovar ou recusar novos cadastros.
+
+RN: somente administradores podem conceder ou remover a permissão de responsável.
+
+RN: um administrador deve validar o vínculo institucional do usuário antes de aprovar seu cadastro.
+
+RN: um administrador também pode possuir permissão de responsável, desde que tenha vínculo como servidor.
+
+Um responsável possui:
+
+as mesmas informações de cadastro de um usuário comum;
+
+a permissão de responsável pelo gerenciamento de achados e perdidos.
+
+RELACIONAMENTO: uma lista de registros de objetos encontrados cadastrados pelo responsável.
+
+RELACIONAMENTO: uma lista de solicitações de recuperação analisadas pelo responsável.
+
+RELACIONAMENTO: uma lista de devoluções registradas pelo responsável.
+
+RN: somente usuários com vínculo como servidor podem receber a permissão de responsável.
+
+RN: um responsável deve possuir uma conta ativa para utilizar as funcionalidades de gerenciamento.
+
+RN: um responsável não pode analisar uma solicitação de recuperação realizada por ele próprio.
+
+RN: um responsável pode cadastrar objetos encontrados, analisar solicitações e registrar devoluções.
+
+Uma categoria possui:
+
+um identificador único;
+
+um nome; exemplos: Material Escolar, Eletrônicos, Vestuário, Acessórios, Documentos e Outros;
+
+uma descrição, para informações complementares sobre a categoria;
+
+uma data de cadastro no sistema;
+
+um indicador (flag: verdadeiro ou falso) que informa se a categoria está ativa ou não.
+
+RELACIONAMENTO: uma lista de registros associados àquela categoria.
+
+RN: toda categoria deve possuir um nome.
+
+RN: não podem existir duas categorias com o mesmo nome.
+
+RN: apenas categorias ativas podem ser selecionadas durante a criação de novos registros.
+
+RN: a desativação de uma categoria não remove os registros históricos associados a ela.
+
+RN: uma categoria deve representar uma classificação geral do objeto, enquanto suas características específicas devem ser informadas na descrição do registro.
+
+Um local possui:
+
+um identificador único;
+
+um nome; exemplos: Biblioteca, Laboratório de Informática, Sala de Aula, Cantina, Pátio e Ginásio;
+
+uma descrição, para informações complementares sobre o local;
+
+o bloco ou setor ao qual pertence, quando aplicável;
+
+uma data de cadastro no sistema;
+
+um indicador (flag: verdadeiro ou falso) que informa se o local está ativo ou não.
+
+RELACIONAMENTO: uma lista de registros associados àquele local.
+
+RN: todo local deve possuir um nome.
+
+RN: não podem existir locais com nomes duplicados.
+
+RN: os locais disponíveis para seleção nos registros devem ser previamente cadastrados no sistema.
+
+RN: o sistema deverá possuir a opção "Local não identificado", para os casos em que não seja possível determinar o local da ocorrência.
+
+RN: apenas locais ativos podem ser selecionados em novos registros.
+
+RN: a desativação de um local não remove os registros históricos associados a ele.
+
+Uma solicitação possui:
+
+um identificador único;
+
+a data em que a solicitação foi realizada;
+
+uma justificativa, contendo informações fornecidas pelo usuário para auxiliar na comprovação de propriedade;
+
+a situação da solicitação, indicando se está pendente, aprovada ou recusada;
+
+a data da análise, caso já tenha sido analisada;
+
+o usuário que realizou a solicitação;
+
+o registro do objeto encontrado ao qual a solicitação está vinculada;
+
+o responsável que realizou a análise, caso a solicitação já tenha sido analisada.
+
+RELACIONAMENTO: um usuário que realizou a solicitação.
+
+RELACIONAMENTO: um registro de objeto encontrado ao qual a solicitação pertence.
+
+RELACIONAMENTO: um usuário responsável pela análise da solicitação, quando aplicável.
+
+RELACIONAMENTO: uma devolução associada à solicitação, caso ela tenha sido aprovada e o objeto tenha sido entregue.
+
+RN: somente usuários ativos e autenticados podem realizar solicitações de recuperação.
+
+RN: toda solicitação deve estar vinculada a um registro de objeto encontrado.
+
+RN: o usuário deve fornecer informações que auxiliem na comprovação de que é o proprietário do objeto.
+
+RN: somente usuários ativos com permissão de responsável podem analisar solicitações.
+
+RN: o responsável não pode aprovar ou recusar uma solicitação realizada por ele próprio.
+
+RN: uma solicitação deve possuir apenas uma situação por vez: pendente, aprovada ou recusada.
+
+RN: uma solicitação pendente deve ser analisada por um responsável autorizado antes de ser considerada concluída.
+
+RN: uma solicitação aprovada permite o registro de uma devolução.
+
+RN: uma solicitação recusada não pode gerar uma devolução.
+
+RN: um registro de objeto encontrado pode receber solicitações de diferentes usuários, cabendo ao responsável analisar cada uma delas.
+
+RN: após a aprovação de uma solicitação e a devolução do objeto, as demais solicitações relacionadas ao mesmo registro devem ser encerradas ou recusadas, impedindo que o objeto seja entregue mais de uma vez.
+
+Uma devolução possui:
+
+um identificador único;
+
+a data em que o objeto foi devolvido;
+
+uma observação, para registrar informações complementares sobre a entrega;
+
+a solicitação aprovada à qual a devolução está vinculada;
+
+o responsável que realizou e registrou a entrega.
+
+RELACIONAMENTO: uma solicitação aprovada que originou a devolução.
+
+RELACIONAMENTO: um usuário responsável pelo registro da devolução.
+
+RN: uma devolução somente pode ser registrada após a aprovação da solicitação correspondente.
+
+RN: somente usuários ativos com permissão de responsável podem registrar devoluções.
+
+RN: toda devolução deve possuir uma data e um responsável.
+
+RN: cada solicitação aprovada pode gerar, no máximo, uma devolução.
+
+RN: uma mesma solicitação não pode gerar mais de uma devolução.
+
+RN: após a devolução, a situação do registro do objeto encontrado deve ser atualizada para "recuperado".
+
+RN: o registro da devolução deve ser mantido no sistema para preservar o histórico de entregas realizadas.
+
+3. Regras gerais do sistema
+
+RN: o sistema é destinado exclusivamente aos alunos e servidores do IFC – Campus Blumenau, sendo necessário possuir vínculo com a instituição para realizar o cadastro.
+
+RN: a consulta de informações básicas dos objetos encontrados é pública, não sendo necessário realizar login.
+
+RN: funcionalidades como cadastro de objetos perdidos, solicitação de recuperação e gerenciamento de registros exigem autenticação.
+
+RN: informações específicas dos objetos encontrados não devem ser exibidas publicamente, pois podem ser utilizadas para verificar se o solicitante é realmente o proprietário.
+
+RN: todo usuário deve possuir uma conta aprovada e ativa para utilizar as funcionalidades que exigem autenticação.
+
+RN: o sistema deve diferenciar usuários comuns, responsáveis e administradores, garantindo que cada funcionalidade seja acessível somente aos usuários com as permissões necessárias.
+
+RN: somente usuários com vínculo de servidor podem receber a permissão de responsável pelo gerenciamento dos achados e perdidos.
+
+RN: a aprovação de novos usuários e a concessão de permissões administrativas ou de responsável são realizadas por administradores.
+
+RN: um objeto encontrado somente poderá ser entregue após a análise e aprovação de uma solicitação de recuperação.
+
+RN: o sistema deve manter o histórico de registros, solicitações, análises e devoluções, evitando a exclusão definitiva de informações necessárias à consulta posterior.
+
+RN: os registros de objetos perdidos e encontrados devem possuir informações suficientes para auxiliar na identificação dos pertences.
+
+RN: os dados pessoais dos usuários devem ser protegidos e não devem ser disponibilizados publicamente sem necessidade.
+
+RN: um mesmo objeto não pode ser devolvido mais de uma vez.
+
+RN: a alteração da situação de um registro deve respeitar o andamento do processo de recuperação, evitando inconsistências entre registros, solicitações e devoluções.
+
+RN: o sistema deve garantir a integridade dos relacionamentos entre usuários, categorias, locais, registros, solicitações e devoluções.
