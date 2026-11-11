@@ -2,10 +2,17 @@ import streamlit as st
 
 from src.crud import create_usuario, delete_usuario, list_usuarios, update_usuario
 from src.database import init_db
+from src.ui import render_page_feature
 
 init_db()
 
 st.title("CRUD - Usuários")
+render_page_feature(
+    "image-1794396610555.png",
+    "Uma comunidade conectada",
+    "Mantenha os usuários e seus vínculos institucionais organizados para facilitar o acompanhamento dos registros.",
+    "Gestão de usuários",
+)
 
 usuarios = list_usuarios()
 if usuarios:

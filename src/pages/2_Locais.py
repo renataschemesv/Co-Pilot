@@ -2,10 +2,17 @@ import streamlit as st
 
 from src.crud import create_local, delete_local, list_locais, update_local
 from src.database import init_db
+from src.ui import render_page_feature
 
 init_db()
 
 st.title("CRUD - Locais")
+render_page_feature(
+    "image-1794396575907.png",
+    "Cada lugar deixa uma pista",
+    "Organize os espaços do campus para que os objetos encontrados possam ser localizados com mais facilidade.",
+    "Gestão de locais",
+)
 
 locais = list_locais()
 if locais:

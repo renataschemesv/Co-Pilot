@@ -2,10 +2,17 @@ import streamlit as st
 
 from src.crud import create_categoria, delete_categoria, list_categorias, update_categoria
 from src.database import init_db
+from src.ui import render_page_feature
 
 init_db()
 
 st.title("CRUD - Categorias")
+render_page_feature(
+    "image-1794396518603.png",
+    "Categorias em ordem",
+    "Agrupe os objetos por tipo para facilitar a consulta e a identificação dos itens encontrados.",
+    "Gestão de categorias",
+)
 
 categorias = list_categorias()
 if categorias:

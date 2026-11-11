@@ -2,10 +2,17 @@ import streamlit as st
 
 from src.crud import create_registro, delete_registro, list_categorias, list_locais, list_registros, list_usuarios, update_registro
 from src.database import init_db
+from src.ui import render_page_feature
 
 init_db()
 
 st.title("CRUD - Registros")
+render_page_feature(
+    "image-1794396638369.png",
+    "Objetos encontrados ou perdidos",
+    "Registre os detalhes e o local de cada objeto para ajudar a conectá-lo à pessoa que o procura.",
+    "Gestão de registros",
+)
 
 categorias = list_categorias()
 locais = list_locais()

@@ -2,10 +2,17 @@ import streamlit as st
 
 from src.crud import create_solicitacao, delete_solicitacao, list_registros, list_solicitacoes, list_usuarios, update_solicitacao
 from src.database import init_db
+from src.ui import render_page_feature
 
 init_db()
 
 st.title("CRUD - Solicitações de Recuperação")
+render_page_feature(
+    "image-1794396708762.png",
+    "Recuperações acompanhadas de perto",
+    "Consulte e acompanhe os pedidos feitos por usuários para recuperar objetos cadastrados no sistema.",
+    "Gestão de solicitações",
+)
 
 registros = list_registros()
 usuarios = list_usuarios()
